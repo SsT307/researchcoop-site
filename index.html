@@ -89,6 +89,7 @@
   }
   .card{
     font:inherit; cursor:pointer; text-align:left;
+    display:block; text-decoration:none; color:inherit;
     background:#fff; border:1px solid var(--edge); border-radius:22px;
     padding:30px 28px 26px;
     box-shadow:0 14px 34px rgba(34,26,21,0.06);
@@ -177,7 +178,7 @@
     <p class="status" id="status">Do the simulation first then you can access the dashboard!</p>
 
     <div class="buttons">
-      <button class="card sim" id="btnSimulation" onclick="launchSimulation()">
+      <a class="card sim" id="btnSimulation" href="https://s2202.itch.io/fire-evac-simulation" target="_blank" rel="noopener">
         <div class="icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8853A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="6 4 20 12 6 20 6 4"/>
@@ -188,9 +189,9 @@
         <span class="go">Launch
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
         </span>
-      </button>
+      </a>
 
-      <button class="card dash" id="btnDashboard" onclick="openDashboard()">
+      <a class="card dash" id="btnDashboard" href="https://evacuation-coach-dashboard-ihpkwhx9uaha6fi6guhg36.streamlit.app/" target="_blank" rel="noopener">
         <div class="icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E7D74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
@@ -201,7 +202,7 @@
         <span class="go">Open
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
         </span>
-      </button>
+      </a>
     </div>
 
   </main>
@@ -211,18 +212,5 @@
     <span>Summer Research Coop 2026</span>
   </footer>
 
-<script>
-  const statusEl = document.getElementById('status');
-  function setStatus(t){ statusEl.textContent = t; }
-
-  /* ---- placeholders, wire these up later ---- */
-  function launchSimulation(){
-    setStatus('Simulation button clicked. No action connected yet.');
-  }
-
-  function openDashboard(){
-    setStatus('Dashboard button clicked. No action connected yet.');
-  }
-</script>
 </body>
 </html>
