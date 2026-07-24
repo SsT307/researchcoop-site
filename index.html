@@ -57,8 +57,8 @@
 
   main{
     position:relative; z-index:2; flex:1;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:40px 24px 72px;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    text-align:center; padding:20px 24px 40px;
   }
   .eyebrow{
     font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.3em;
@@ -87,6 +87,41 @@
     margin-top:34px; width:100%; max-width:760px;
     display:grid; grid-template-columns:repeat(2,1fr); gap:22px;
   }
+  .buttons.single{max-width:400px; grid-template-columns:1fr}
+
+  /* step sections */
+  .step{
+    width:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:60px 0 70px;
+  }
+  .step + .step{border-top:1px solid var(--edge)}
+  .badge{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:"IBM Plex Mono",monospace; font-size:11px;
+    letter-spacing:0.24em; text-transform:uppercase; color:var(--body);
+    margin-bottom:18px;
+  }
+  .badge b{
+    font-weight:500; color:#fff; background:var(--amber);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:11px; letter-spacing:0;
+  }
+  .badge.teal b{background:var(--teal)}
+  .step h2.stepTitle{
+    font-family:"Fraunces",serif; font-weight:600; color:var(--ink);
+    font-size:clamp(26px,3.6vw,38px); letter-spacing:-0.015em; line-height:1.15;
+    max-width:18ch;
+  }
+  .cue{
+    margin-top:40px; display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono",monospace; font-size:11px;
+    letter-spacing:0.2em; text-transform:uppercase; color:var(--body); opacity:.65;
+    text-decoration:none;
+  }
+  .cue svg{animation:bob 1.9s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
   .card{
     font:inherit; cursor:pointer; text-align:left;
     display:block; text-decoration:none; color:inherit;
@@ -103,6 +138,11 @@
   }
   .card.sim .icon{background:var(--amber-soft)}
   .card.dash .icon{background:var(--teal-soft)}
+  .card .groupTag{
+    display:block; font-family:"IBM Plex Mono",monospace; font-size:11px;
+    letter-spacing:0.24em; text-transform:uppercase; color:var(--teal);
+    margin-bottom:6px;
+  }
   .card h2{
     font-family:"Fraunces",serif; font-weight:600; font-size:26px;
     color:var(--ink); letter-spacing:-0.01em; line-height:1.2;
@@ -155,13 +195,16 @@
   </header>
 
   <main>
-    <p class="eyebrow">Digital Twin Lite</p>
-    <h1>Fire Evacuation Simulation, using <em>AI</em></h1>
 
-    <p class="question">
-      We built a virtual building where fire and smoke spread while people try to escape.
-      Our study asks one thing:<strong>"Does an LLM coach improve human decision making in high stress virtual evacuation scenarios?"</strong>
-    </p>
+    <!-- ================= STEP 1 ================= -->
+    <section class="step" id="step1">
+      <p class="eyebrow">Digital Twin Lite</p>
+      <h1>Fire Evacuation Simulation, using <em>AI</em></h1>
+
+      <p class="question">
+        We built a virtual building where fire and smoke spread while people try to escape.
+        Our study asks one thing. <strong>"Does an LLM coach improve human decision making in high stress virtual evacuation scenarios?"</strong>
+      </p>
 
     <svg class="plan" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect x="12" y="12" width="276" height="126" rx="10" stroke="#221A15" stroke-opacity=".22" stroke-width="1.5"/>
@@ -175,35 +218,68 @@
       <circle cx="168" cy="112" r="6" fill="#E8853A" fill-opacity=".45"/>
     </svg>
 
-    <p class="status" id="status">Do the simulation first then you can access the dashboard!</p>
+      <p class="badge"><b>1</b> Start here</p>
 
-    <div class="buttons">
-      <a class="card sim" id="btnSimulation" href="https://s2202.itch.io/fire-evac-simulation" target="_blank" rel="noopener">
+      <div class="buttons single">
+      <a class="card sim" id="btnSimulation" href="PASTE_UNITY_LINK_HERE" target="_blank" rel="noopener">
         <div class="icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8853A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="6 4 20 12 6 20 6 4"/>
           </svg>
         </div>
         <h2>Start the simulation</h2>
-        <p>Click to open the unity gameplay.... (psst, the password is "123")!!.</p>
+        <p>Step into the building and try to get out safely while conditions change around you.</p>
         <span class="go">Launch
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
         </span>
       </a>
+      </div>
 
-      <a class="card dash" id="btnDashboard" href="https://evacuation-coach-dashboard-ihpkwhx9uaha6fi6guhg36.streamlit.app/" target="_blank" rel="noopener">
-        <div class="icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E7D74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
-          </svg>
-        </div>
-        <h2>Open the dashboard</h2>
-        <p>Review the run with movement heatmaps and written feedback on the decisions that were made.</p>
-        <span class="go">Open
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
-        </span>
+      <a class="cue" href="#step2">
+        Then continue below
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </a>
-    </div>
+    </section>
+
+    <!-- ================= STEP 2 ================= -->
+    <section class="step" id="step2">
+      <p class="badge teal"><b>2</b> After your run</p>
+      <h2 class="stepTitle">Open your group dashboard</h2>
+
+      <p class="status">Click the card for the group you were assigned.</p>
+
+      <div class="buttons">
+
+        <a class="card dash" id="btnGroupA" href="PASTE_GROUP_A_DASHBOARD_LINK" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E7D74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+            </svg>
+          </div>
+          <span class="groupTag">Group A</span>
+          <h2>Group A Dashboard</h2>
+          <p>Upload the file from your run and review the results.</p>
+          <span class="go">Open
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
+          </span>
+        </a>
+
+        <a class="card dash" id="btnGroupB" href="PASTE_GROUP_B_DASHBOARD_LINK" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E7D74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+            </svg>
+          </div>
+          <span class="groupTag">Group B</span>
+          <h2>Group B Dashboard</h2>
+          <p>Upload the file from your run and review the results.</p>
+          <span class="go">Open
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h11M8 1l4 4-4 4"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </section>
 
   </main>
 
